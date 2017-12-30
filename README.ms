@@ -1,3 +1,21 @@
+How to run the application.
+    Dependencies:
+        - Java 8
+        - Maven
+        - Git
+
+Using the command line
+
+First clone the project: git clone https://github.com/tiagowanke/filecompare.git
+![Clonning the project](https://github.com/tiagowanke/filecompare/blob/master/src/main/resources/static/image/clone-project.png)
+
+Now lets package the project: mvn package -DskipTests=true
+![Package](https://github.com/tiagowanke/filecompare/blob/master/src/main/resources/static/image/package.png)
+
+All we have to do now is to run the jar file: java -jar target\filecompare.jar
+Make sure that port 8080 is free
+![Start app](https://github.com/tiagowanke/filecompare/blob/master/src/main/resources/static/image/start-app.png)
+
 This project provide the following services:
 
 /v1/diff/<ID>/left
