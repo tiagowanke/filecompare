@@ -9,7 +9,7 @@
 First clone the project: git clone https://github.com/tiagowanke/filecompare.git
 ![Clonning the project](https://github.com/tiagowanke/filecompare/blob/master/src/main/resources/static/image/clone-project.png)
 
-Now lets package the project: mvn package -DskipTests=true
+Now lets package the project: mvn package
 ![Package](https://github.com/tiagowanke/filecompare/blob/master/src/main/resources/static/image/package.png)
 
 All we have to do now is to run the jar file: java -jar target\filecompare.jar

@@ -158,9 +158,17 @@ public class FileDiffTest {
         assertThat(result.get(11), is(4));
 
         // lets check the json return
-        final JsonObject resultAsJson = fileDiff.resultAsJson();
+        JsonObject resultAsJson = fileDiff.resultAsJson();
         assertNull(resultAsJson.get("message"));
         assertThat(resultAsJson.get("11").getAsInt(), is(4));
+
+        final byte[] sameSizeFileFirstLetterDiff = FileDiffTest.fileAsByte("same-size-file-first-letter-diff.txt");
+        fileDiff.setRight(sameSizeFileFirstLetterDiff);
+
+        // lets check the json return
+        resultAsJson = fileDiff.resultAsJson();
+        assertNull(resultAsJson.get("message"));
+        assertThat(resultAsJson.get("0").getAsInt(), is(1));
     }
 
     @Test
