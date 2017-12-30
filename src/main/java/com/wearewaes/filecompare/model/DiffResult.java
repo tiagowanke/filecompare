@@ -1,7 +1,7 @@
 package com.wearewaes.filecompare.model;
 
 /**
- * Represent the expeted result from a {@link Differentiator} implementation.
+ * Represent the expeted result from a diff between two files.
  *
  * @author Tiago
  *
