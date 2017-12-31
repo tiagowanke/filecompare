@@ -82,6 +82,30 @@ public class FileDiff {
         return offsets;
     }
 
+    /**
+     * <pre>
+     * JSON representation of the diff of both left and right filef:
+     *
+     * When {@link DiffResult#DIFERENT_SIZE}
+     *  {
+     *      "message": "Files have different size."
+     *  }
+     *
+     * When {@link DiffResult#EQUALS}
+     *  {
+     *      "message": "Files are the same."
+     *  }
+     *
+     * When {@link DiffResult#SAME_SIZE_NOT_EQUALS}
+     *  {
+     *      "<offset>": <lenght>,
+     *      "<offset>": <lenght>,
+     *      ....
+     *  }
+     * </pre>
+     *
+     * @return
+     */
     public JsonObject resultAsJson() {
 
         JsonObject jObj = new JsonObject();
