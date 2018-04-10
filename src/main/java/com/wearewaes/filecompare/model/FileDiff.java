@@ -3,6 +3,9 @@ package com.wearewaes.filecompare.model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -60,24 +63,23 @@ public class FileDiff {
 
         final Map<Integer, Integer> offsets = new HashMap<>();
 
-        boolean isNextDiffOffset = true;
-        Integer currentOffset = null;
+        final AtomicBoolean isNextDiffOffset = new AtomicBoolean(true);
+        final AtomicInteger currentOffset = new AtomicInteger();
 
-        for (int i = 0; i < left.length; i++) {
-
+        IntStream.range(0, left.length).forEach(i -> {
             if (left[i] != right[i]) {
-                if (isNextDiffOffset) {
-                    currentOffset = i;
-                    offsets.put(currentOffset, 1);
-                    isNextDiffOffset = false;
+                if (isNextDiffOffset.get()) {
+                    currentOffset.set(i);
+                    offsets.put(currentOffset.get(), 1);
+                    isNextDiffOffset.set(false);
                 } else {
-                    int length = offsets.get(currentOffset);
-                    offsets.put(currentOffset, ++length);
+                    int length = offsets.get(currentOffset.get());
+                    offsets.put(currentOffset.get(), ++length);
                 }
-            } else if (!isNextDiffOffset) {
-                isNextDiffOffset = true;
+            } else if (!isNextDiffOffset.get()) {
+                isNextDiffOffset.set(true);
             }
-        }
+        });
 
         return offsets;
     }
