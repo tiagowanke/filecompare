@@ -55,7 +55,7 @@ public class FileDiffServiceTest {
     @Test
     public void fileCompareMustCreateNewObject() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
 
-        final Method method = FileDiffServiceTest.fileCompareAccessible();
+        final Method createAndReturnFileDiffMethod = FileDiffServiceTest.fileCompareAccessible();
         final Field filesCompareField = this.fileCompareService.getClass().getDeclaredField("filesDiff");
         filesCompareField.setAccessible(true);
         @SuppressWarnings("unchecked")
@@ -63,13 +63,13 @@ public class FileDiffServiceTest {
 
         // ask for a FileCompare while the base64files are empty
         assertTrue(filesCompare.isEmpty());
-        assertThat(method.invoke(this.fileCompareService, 1l), instanceOf(FileDiff.class));
+        assertThat(createAndReturnFileDiffMethod.invoke(this.fileCompareService, 1l), instanceOf(FileDiff.class));
         assertTrue(filesCompare.isEmpty());
 
         // ask for a FileCompare that is not on the list yet
         final FileDiff myFileCompare = new FileDiff();
         filesCompare.put(1L, myFileCompare);
-        final FileDiff actualFileCompare = (FileDiff) method.invoke(fileCompareService, 2L);
+        final FileDiff actualFileCompare = (FileDiff) createAndReturnFileDiffMethod.invoke(fileCompareService, 2L);
         assertThat(actualFileCompare, instanceOf(FileDiff.class));
         assertThat(actualFileCompare, is(not(sameInstance(myFileCompare))));
     }

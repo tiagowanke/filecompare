@@ -57,6 +57,10 @@ public class FileDiffControllerTest {
     /*******************************
      * Test addFile(Long id, String side, String base64file)
      *******************************/
+
+    /**
+     * Call addFile without setting parameter as JSON
+     */
     @Test
     public void addFileWithUnsuportedMedia() throws Exception {
 
