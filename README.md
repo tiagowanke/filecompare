@@ -22,20 +22,20 @@ If your using an IDE to run the project you can simply run class ApplicationConf
 
 # This project provide the following services:
 
-## /v1/diff/<ID>/left
-Post service that accepts a JSON base64 encoded binary data and will store in memory on the left position of the given <ID>
+## /v1/diff/[id]/left
+Post service that accepts a JSON base64 encoded binary data and will store in memory on the left position of the given [id]
 Returns:
   HttpStatus: OK
 
-## /v1/diff/<ID>/right
-Post service that accepts a JSON base64 encoded binary data and will store in memory on the left position of the given <ID>
+## /v1/diff/[id]/right
+Post service that accepts a JSON base64 encoded binary data and will store in memory on the right position of the given [id]
 Returns:
   HttpStatus: 200 OK
 
-## /v1/diff/<ID>
-Get service that returns a JSON information about the difference of left and right file of a the given <ID>
+## /v1/diff/[id]
+Get service that returns a JSON information about the difference of left and right file of a the given [id]
 Returns:
-  HttpStatus: 404 Not Found. If given <ID> doesn't exists
+  HttpStatus: 404 Not Found. If given [id] doesn't exists
   HttpStatus: 202 Ok. With the possible JSON returns:
     If left and right have different sizes:
       { "message": "Files have different size." }
